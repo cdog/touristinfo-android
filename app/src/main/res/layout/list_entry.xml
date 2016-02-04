@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="22sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/Description" />
+
+    <TextView
+        android:id="@+id/Day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day temperature"
+        android:textSize="22sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/Night" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="22sp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@id/icon" />
+
+    <TextView
+        android:id="@+id/Night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Night temperature"
+        android:textSize="22sp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/icon" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dip"
+        android:src="@mipmap/ic_launcher" />
+
+</RelativeLayout>

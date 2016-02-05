@@ -37,16 +37,21 @@ public class InfoActivity extends Activity {
         Intent intent = getIntent();
         String locationName = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_NAME);
         double coordinates[] = intent.getDoubleArrayExtra(MainActivity.EXTRA_MESSAGE_COORDINATES);
-        System.out.println(locationName + ": " + coordinates[0] + ", " + coordinates[1]);
+        String locationDescription = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_DESCRIPTION);
 
         values.clear();
         for (int i = 0; i < 7; i++)
             values.add(new LocationWeather());
 
         /* set location name */
-        final TextView textView = (TextView) findViewById(R.id.locationName);
-        textView.setText(locationName);
+        final TextView textViewName = (TextView) findViewById(R.id.locationName);
+        textViewName.setText(locationName);
 
+        /* set description */
+        final TextView textViewDescription = (TextView) findViewById(R.id.locationDescription);
+        textViewDescription.setText(locationDescription);
+
+        /* set list */
         ArrayList<String> list = new ArrayList<>();
         for (LocationWeather lw : values)
             list.add("");
@@ -101,7 +106,7 @@ public class InfoActivity extends Activity {
             /* TODO uncomment */
             //return;
             try {
-                ja = new JSONArray("[{\"description\":\"light snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454490000,\"temperatureValues\":{\"day\":0.87,\"night\":0.76},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454576400,\"temperatureValues\":{\"day\":1.37,\"night\":-3.83},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"light snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454662800,\"temperatureValues\":{\"day\":-5.25,\"night\":-6.11},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"light snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454749200,\"temperatureValues\":{\"day\":-1.24,\"night\":-6.56},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454835600,\"temperatureValues\":{\"day\":-7.3,\"night\":-2.46},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1454922000,\"temperatureValues\":{\"day\":2.09,\"night\":1.72},\"icon\":\"http://openweathermap.org/img/w/13d.png\"},{\"description\":\"light snow\",\"shortDescription\":\"Snow\",\"timeOfData\":1455008400,\"temperatureValues\":{\"day\":1.98,\"night\":1.71},\"icon\":\"http://openweathermap.org/img/w/13d.png\"}]");
+                ja = new JSONArray("[{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1454662800,\"temperatureValues\":{\"day\":8.91,\"night\":8.91},\"icon\":\"http://openweathermap.org/img/w/01n.png\"},{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1454749200,\"temperatureValues\":{\"day\":22.32,\"night\":16.42},\"icon\":\"http://openweathermap.org/img/w/01d.png\"},{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1454835600,\"temperatureValues\":{\"day\":23.25,\"night\":8.29},\"icon\":\"http://openweathermap.org/img/w/01d.png\"},{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1454922000,\"temperatureValues\":{\"day\":19.9,\"night\":8.49},\"icon\":\"http://openweathermap.org/img/w/01d.png\"},{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1455008400,\"temperatureValues\":{\"day\":17.53,\"night\":7},\"icon\":\"http://openweathermap.org/img/w/01d.png\"},{\"description\":\"light rain\",\"shortDescription\":\"Rain\",\"timeOfData\":1455094800,\"temperatureValues\":{\"day\":22.76,\"night\":10.33},\"icon\":\"http://openweathermap.org/img/w/10d.png\"},{\"description\":\"sky is clear\",\"shortDescription\":\"Clear\",\"timeOfData\":1455181200,\"temperatureValues\":{\"day\":21.61,\"night\":6.73},\"icon\":\"http://openweathermap.org/img/w/01d.png\"}]");
             }
             catch (JSONException e) {
                 e.printStackTrace();

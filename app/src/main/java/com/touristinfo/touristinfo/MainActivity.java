@@ -28,11 +28,13 @@ import java.util.HashMap;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener {
     public final static String EXTRA_MESSAGE_NAME = "com.touristinfo.touristinfo.MESSAGE";
+    public final static String EXTRA_MESSAGE_DESCRIPTION = "com.touristinfo.touristinfo.MESSAGE3";
     public final static String EXTRA_MESSAGE_COORDINATES = "com.touristinfo.touristinfo.MESSAGE2";
 
     private ArrayList<LocationInfo> locations = new ArrayList<>();
     private ArrayList<Marker> markers = new ArrayList<>();
     private HashMap<Marker, Long> markers_click_times = new HashMap<>();
+    private HashMap<String, String> nameToDescriptionMap = new HashMap<>();
     private GoogleMap mMap;
     private Marker visibleMarker;
     private Marker candidateVisibleMarker;
@@ -93,6 +95,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             Intent intent = new Intent(this, InfoActivity.class);
             intent.putExtra(EXTRA_MESSAGE_NAME, marker.getTitle());
             intent.putExtra(EXTRA_MESSAGE_COORDINATES, coordinates);
+            intent.putExtra(EXTRA_MESSAGE_DESCRIPTION, nameToDescriptionMap.get(marker.getTitle()));
             startActivity(intent);
         }
         else {
@@ -131,7 +134,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             /* TODO rework */
             //return;
             try {
-                ja = new JSONArray("[{\"id\":1,\"name\":\"Cabana Colț\",\"latitude\":45.09679,\"longitude\":22.741699,\"description\":null},{\"id\":2,\"name\":\"Cabana Alpin\",\"latitude\":45.236217,\"longitude\":23.378906,\"description\":null},{\"id\":3,\"name\":\"Cabana Ghețar\",\"latitude\":45.274887,\"longitude\":23.972168,\"description\":null},{\"id\":4,\"name\":\"Cabana Brâna\",\"latitude\":45.305801,\"longitude\":24.960938,\"description\":null},{\"id\":5,\"name\":\"Camping Fereastra\",\"latitude\":45.305801,\"longitude\":25.64209,\"description\":null},{\"id\":6,\"name\":\"Refugiu Canion\",\"latitude\":45.690834,\"longitude\":26.488037,\"description\":null},{\"id\":7,\"name\":\"Cabana Creasta\",\"latitude\":46.027481,\"longitude\":26.345215,\"description\":null},{\"id\":8,\"name\":\"Camping Padina\",\"latitude\":46.521076,\"longitude\":26.433105,\"description\":null},{\"id\":9,\"name\":\"Camping Curmătura\",\"latitude\":47.15984,\"longitude\":26.147461,\"description\":null},{\"id\":10,\"name\":\"Camping Cascada\",\"latitude\":47.331375,\"longitude\":25.817871,\"description\":null},{\"id\":11,\"name\":\"Cabana Dolina\",\"latitude\":46.995239,\"longitude\":25.653076,\"description\":null},{\"id\":12,\"name\":\"Cabana Peștera\",\"latitude\":46.91275,\"longitude\":26.38916,\"description\":null},{\"id\":13,\"name\":\"Camping Cumpăna\",\"latitude\":46.822617,\"longitude\":25.949707,\"description\":null},{\"id\":14,\"name\":\"Refugiu Coama\",\"latitude\":46.324173,\"longitude\":25.993652,\"description\":null},{\"id\":15,\"name\":\"Camping Dorna\",\"latitude\":45.836452,\"longitude\":26.136475,\"description\":null},{\"id\":16,\"name\":\"Camping Cheia\",\"latitude\":45.560219,\"longitude\":25.894775,\"description\":null},{\"id\":17,\"name\":\"Cabana Izvor\",\"latitude\":45.383018,\"longitude\":25.257568,\"description\":null},{\"id\":18,\"name\":\"Cabana Măgura\",\"latitude\":45.614037,\"longitude\":24.0271,\"description\":null},{\"id\":19,\"name\":\"Refugiu Escalada\",\"latitude\":45.47554,\"longitude\":23.686523,\"description\":null},{\"id\":20,\"name\":\"Camping Arcada\",\"latitude\":45.521744,\"longitude\":23.049316,\"description\":null}]");
+                ja = new JSONArray("[{\"_id\":\"56b35fafaa1e8223485951e2\",\"name\":\"Cabana Colț\",\"location\":[22.741699,45.09679],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e3\",\"name\":\"Cabana Alpin\",\"location\":[23.378906,45.236217],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e4\",\"name\":\"Cabana Ghețar\",\"location\":[23.972168,45.274887],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e5\",\"name\":\"Cabana Brâna\",\"location\":[24.960938,45.305801],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e6\",\"name\":\"Camping Fereastra\",\"location\":[25.64209,45.305801],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e7\",\"name\":\"Refugiu Canion\",\"location\":[26.488037,45.690834],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e8\",\"name\":\"Cabana Creasta\",\"location\":[26.345215,46.027481],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951e9\",\"name\":\"Camping Padina\",\"location\":[26.433105,46.521076],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951ea\",\"name\":\"Camping Curmătura\",\"location\":[26.147461,47.15984],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951eb\",\"name\":\"Camping Cascada\",\"location\":[25.817871,47.331375],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951ec\",\"name\":\"Cabana Dolina\",\"location\":[25.653076,46.995239],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951ed\",\"name\":\"Cabana Peștera\",\"location\":[26.38916,46.91275],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951ee\",\"name\":\"Camping Cumpăna\",\"location\":[25.949707,46.822617],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951ef\",\"name\":\"Refugiu Coama\",\"location\":[25.993652,46.324173],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f0\",\"name\":\"Camping Dorna\",\"location\":[26.136475,45.836452],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f1\",\"name\":\"Camping Cheia\",\"location\":[25.894775,45.560219],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f2\",\"name\":\"Cabana Izvor\",\"location\":[25.257568,45.383018],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f3\",\"name\":\"Cabana Măgura\",\"location\":[24.0271,45.614037],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f4\",\"name\":\"Refugiu Escalada\",\"location\":[23.686523,45.47554],\"__v\":0},{\"_id\":\"56b35fafaa1e8223485951f5\",\"name\":\"Camping Arcada\",\"location\":[23.049316,45.521744],\"__v\":0},{\"_id\":\"56b3b9dedc681811001ba548\",\"description\":\"Cabana Clujului ofera conditii de lux la pret redus.\",\"name\":\"Cabana Clujului\",\"location\":[23.642578125,46.769968433569815],\"__v\":0},{\"_id\":\"56b4a45d91857d11006d7b8e\",\"description\":\"Personal use\",\"name\":\"Bucharest\",\"location\":[26.103515625,44.402391829093915],\"__v\":0}]");
             }
             catch (JSONException e) {
                 e.printStackTrace();
@@ -152,9 +155,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 JSONArray location = jo.getJSONArray("location");
                 double latitude = location.getDouble(1);
                 double longitude = location.getDouble(0);
-                //String description = jo.getString("description");
-                String description = jo.getString("__v");
-                System.out.println(name + " " + description + " " + latitude + " " + longitude);
+                String description = "N/A";
+                try {
+                    description = jo.getString("description");
+                }
+                catch (JSONException e) {
+                }
+
                 locations.add(new LocationInfo(name, description, latitude, longitude));
             }
         }
@@ -165,19 +172,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     void refreshMarkers() {
         /* remove old markers */
-        for (Marker m : markers)
-            m.remove();
-
+        for (Marker marker : markers) {
+            nameToDescriptionMap.remove(marker.getTitle());
+            marker.remove();
+        }
         markers.clear();
         markers_click_times.clear();
 
-        System.out.println("locations size = " + locations.size());
         /* add new markers */
         for (LocationInfo li : locations) {
             LatLng sydney = new LatLng(li.latitude, li.longitude);
             Marker marker = mMap.addMarker(new MarkerOptions().position(sydney).title(li.name));
             markers.add(marker);
             markers_click_times.put(marker, 0L);
+            nameToDescriptionMap.put(li.name, li.description);
         }
 
         /* center map */

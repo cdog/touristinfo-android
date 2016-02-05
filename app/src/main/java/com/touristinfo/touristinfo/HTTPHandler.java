@@ -6,8 +6,10 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,11 +40,12 @@ public class HTTPHandler {
             // Starts the query
             urlConnection.connect();
             InputStream is = urlConnection.getInputStream();
-            String body = "";
-            int ch;
-            while ((ch = is.read()) != -1)
-                body += (char) ch;
-            System.out.println(body);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf8"), 8192);
+            String body = "", str;
+            while ((str = br.readLine()) != null)
+                body += str;
+
             JSONArray ja = new JSONArray(body);
             return ja;
 
